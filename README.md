@@ -1,43 +1,39 @@
-###### CSC-568Project
+### CSC-568Project
 
-ESA Status Report 1 - Distributed FS using FUSE
+ Distributed FS using FUSE and gRpc
 
-**Project Description:**
+Project Description:
 
-Implementation of a DFS using a FUSE based backend, that provides replication, location transparency among other features
+Implementation of a Distributed based file system using a FUSE based backend and gRpc as the communication protocol, that provides replication, location transparency among other features
 
-**Team Members: Gautam Worah (gworah), Pardhakeswar Pacha (ppacha), Tapas Mallick (trmallic) **
+### Team Members 
+Gautam Worah (gworah). \
+Pardhakeswar Pacha (ppacha). \
+Tapas Mallick (trmallic). 
 
-**Current Status: **
+For the complete Architecure and details look at the Presentation file. 
 
-We are able to create a server and client that interact via gRPC. The client send the commands to the server via gRPC and the server executed the command locally using FUSE. These results are returned to the client. We are able to successfully create files, directories, and edit them via the client and the corresponding changes are visible in the server as well. In the next phase we will focus on implementing deduplication in the server. 
+The 3 stage architecture has been implemented in the ReplicationEnabledDFS Folder.
 
-**Steps to build the system: **
+### Fuse and gRpc Installation steps
+Look at the file: fuse_and_grpc_install_steps
 
-https://github.com/libfuse/libfuse install libfuse from this link
+### Steps to run code.
 
-https://github.com/libfuse/libfuse/issues/178 -- move file to init.d folder did this next
+use the ReplicationEnabled Folder
 
-https://github.com/libfuse/libfuse/issues/212 sudo ln -s /usr/local/lib/x86_64-linux-gnu/libfuse3.so.3.4.1 /lib/x86_64-linux-gnu/libfuse3.so.3
+Run everything as root
 
-**Building the project **
-
-./make clean
-
-./make
-
-**Running the server **
-
-mkdir ./server
-
-./nfsfuse_server
-
-**Running the client **
-
+make clean
+make
+### Running The data server ###########
+mkdir ./dataserver. \
+./nfsfuse_dataserver 0.0.0.0
+### Running the staging server
+./nfsfuse_staging 0.0.0.0
+### Running the client
 mkdir ./client
-
-./nfsfuse_client ./client
-
-**GitHub repository: https://github.ncsu.edu/gworah/CSC-568Project**
+./nfsfuse_client 0.0.0.0 ./client      <<< on local machine
 
 
+For any queries, contact ppacha@ncsu.edu 

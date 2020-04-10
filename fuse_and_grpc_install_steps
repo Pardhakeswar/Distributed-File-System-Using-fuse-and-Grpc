@@ -1,0 +1,74 @@
+Run as root “sudo su“
+
+Grpc:
+
+apt-get install build-essential autoconf libtool pkg-config
+apt-get install libgflags-dev libgtest-dev
+apt-get install clang libc++-dev
+git clone -b v1.20.0 https://github.com/grpc/grpc
+cd grpc/
+git submodule update --init
+make
+make install
+
+
+
+
+Protobuf:
+
+cd third_party/protobuf/
+sudo make install
+
+To check if protobuf is working:
+
+cd grpc/examples/cpp/helloworld/
+make clean
+make
+
+Run 
+./greeter_server
+Then run  below command in new terminal from same folder
+./greeter_client 
+
+You should see a message “Hello World”. This confirms that protobuf is correctly installed to run with grace.
+
+
+Alternatively, you can install protobuf with below commands:
+
+sudo apt-get install autoconf automake libtool curl make g++ unzip
+wget https://github.com/protocolbuffers/protobuf/releases/download/v3.7.1/protobuf-cpp-3.7.1.tar.gz
+tar zxvf prot*
+cd prot*
+./configure
+make
+make check
+sudo make install
+sudo ldconfig
+
+
+
+
+Fuse:
+sudo apt-get install python3 python3-pip ninja-build
+pip3 install --user meson
+apt install meson
+
+wget https://github.com/libfuse/libfuse/releases/download/fuse-3.4.1/fuse-3.4.1.tar.xz
+tar -xvf fuse*
+cd fuse*
+mkdir build
+cd build
+meson ..
+mesonconf 
+ninja
+ninja install
+mv /usr/local/etc/init.d/fuse3 /etc/init.d/
+sudo update-rc.d fuse3 start 34 S . start 41 0 6 .
+sudo ninja install
+sudo ln -s /usr/local/lib/x86_64-linux-gnu/libfuse3.so.3.4.1 /lib/x86_64-linux-gnu/libfuse3.so.3
+
+
+
+
+
+
